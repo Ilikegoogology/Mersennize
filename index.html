@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mersennize - Round to Mersenne Prime</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input {
+            margin: 5px;
+            padding: 10px;
+        }
+        button {
+            padding: 10px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Round to Nearest Mersenne Prime</h1>
+    <input type="number" id="numberInput" placeholder="Enter a number" />
+    <button onclick="findNearestMersenne()">Find Nearest Mersenne Prime</button>
+    <div class="result" id="result"></div>
+
+    <script>
+        const mersennePrimes = [3, 7, 31, 127, 8191, 131071]; // Add more if needed
+
+        function findNearestMersenne() {
+            const inputNum = parseInt(document.getElementById("numberInput").value);
+            if (isNaN(inputNum)) {
+                document.getElementById("result").innerText = "Please enter a valid number.";
+                return;
+            }
+            let nearest = mersennePrimes.reduce((prev, curr) => 
+                Math.abs(curr - inputNum) < Math.abs(prev - inputNum) ? curr : prev);
+            document.getElementById("result").innerText = `Nearest Mersenne Prime: ${nearest}`;
+        }
+    </script>
+</body>
+</html>
